@@ -1,0 +1,1 @@
+# stud_app_front_end
