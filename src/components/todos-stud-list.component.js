@@ -18,6 +18,7 @@ export default class TodosStudList extends Component {
     constructor(props) {
         super(props);
         this.state = {todos: []};
+        this.orderByName = this.orderByName.bind(this);
     }
 
     componentDidMount() {
@@ -37,10 +38,26 @@ export default class TodosStudList extends Component {
         })
     }
 
+    orderByName() {
+        console.log("button cick")
+        axios.get('http://localhost:8080/api/dropdown/retrieve/order/name/student')
+            .then(response => {
+                console.log("Res", response)
+                this.setState({ todos: response.data });
+            })
+            .catch(function (error){
+                console.log(error);
+            })
+
+    }
+
     render() {
         return (
             <div>
                 <h3>Student List</h3>
+                <p align="right">
+                    <button onClick={this.orderByName}>Click Me For Data</button>
+                </p>
                 <table className="table table-striped" style={{ marginTop: 20 }} >
                     <thead>
                         <tr>
